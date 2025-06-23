@@ -3,12 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <title>Antithesis Chat</title>
+    <style>
+        .msg { margin: 5px 0; }
+        .user-msg { color: blue; }
+        .ai-msg { color: green; }
+        .error-msg { color: red; }
+    </style>
 </head>
 <body>
     <h1>Antithesis Chat</h1>
-    <input type="text" id="userInput" placeholder="Type your message..." />
-    <button id="sendBtn">Send</button>
-    <p id="responseBox"></p>
+
+    <!-- Mode Selector -->
+    <label for="mode">Select Mode:</label>
+    <select id="mode">
+        <option value="simple">Simple</option>
+        <option value="core">Core</option>
+        <option value="profound">Profound</option>
+        <option value="devil">Devil's Advocate</option>
+    </select>
+
+    <!-- Chat Box -->
+    <div id="chat-box"></div>
+
+    <!-- User Input -->
+    <input type="text" id="user-input" placeholder="Type your message..." />
+    <button id="send-btn">Send</button>
 
     <script src="bundle.js"></script>
 </body>
