@@ -1,22 +1,19 @@
-require('dotenv').config();
-const express = require('express');
-const cors = require('cors');
-const rateLimit = require('express-rate-limit');
-const chatRouter = require('./routes/chat');
+// example fragment in public/bundle.js
+async function sendMessage() {
+  const txt = userInput.value.trim();
+  if (!txt) return;
 
-const app = express();
-app.use(cors());
-app.use(express.json());
+  // append user message locally...
+  messages.push({ role: 'user', content: txt });
 
-// simple rate‐limit: 100 reqs per hour per IP
-app.use(rateLimit({ windowMs: 60*60*1000, max: 100 }));
+  // send to backend
+  const resp = await fetch('/api/chat', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ messages, mode: modeSelect.value })
+  });
+  const { reply } = await resp.json();
 
-// serve frontend
-app.use(express.static('public'));
-
-// mount chat endpoint
-app.use('/api/chat', chatRouter);
-
-// fallback
-const port = process.env.PORT || 3000;
-app.listen(port, () => console.log(`🛡️  Server listening on ${port}`));
+  // append AI reply locally...
+  messages.push({ role: 'assistant', content: reply });
+}
