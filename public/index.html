@@ -41,31 +41,55 @@
     }
 
     async function sendMessage() {
-      const text = userInput.value.trim();
-      if (!text) return;
-      appendMsg('user', text);
+      const userText = userInput.value.trim();
+      if (!userText) return;
+
+      appendMsg('user', userText);
+      messages.push({ role: 'user', content: userText });
       userInput.value = '';
 
+      const systemPrompt = getSystemPrompt();
+      const teaching = buildTeachingContext(userText);
+
+      const fullMessages = [
+        { role: 'system', content: systemPrompt },
+        { role: 'system', content: `Draw on these teachings: ${teaching}` },
+        { role: 'user', content: userText }
+      ];
+
       appendMsg('assistant', '...');
+      const loading = chatBox.lastChild;
+
+      let reply = '';
       try {
         const res = await fetch('/api/chat', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ messages: [{ role: 'user', content: text }], mode: modeSelect.value })
+          body: JSON.stringify({ messages: fullMessages, mode: modeSelect.value })
         });
-        const data = await res.json();
-        const reply = data.reply || 'Error: no reply';
-        // remove loading
-        const loading = chatBox.querySelector('.ai-msg:last-child');
-        if (loading) loading.remove();
-        appendMsg('assistant', reply);
+        if (res.headers.get('content-type')?.includes('application/json')) {
+          const data = await res.json();
+          reply = data.reply;
+        } else {
+          reply = await res.text();
+        }
       } catch (err) {
-        const loading = chatBox.querySelector('.ai-msg:last-child');
-        if (loading) loading.textContent = `❌ ${err.message}`;
+        reply = `❌ ${err.message}`;
       }
+
+      loading.remove();
+      messages.push({ role: 'assistant', content: reply });
+      appendMsg('assistant', reply);
     }
 
     sendBtn.addEventListener('click', sendMessage);
+    userInput.addEventListener('keydown', e => {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        sendMessage();
+      }
+    });
+('click', sendMessage);
     userInput.addEventListener('keydown', e => {
       if (e.key === 'Enter') {
         e.preventDefault();
