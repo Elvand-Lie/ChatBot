@@ -27,10 +27,57 @@
   <footer>Antithesis © 2025</footer>
 
   <script type="module">
+    const GROQ_API_URL = 'https://api.groq.com/openai/v1/chat/completions';
+    const GROQ_API_KEY = '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';
+    const OPENROUTER_API_URL = 'https://openrouter.ai/api/v1/chat/completions';
+    const OPENROUTER_API_KEY = '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';
+    const HUGGINGFACE_API_URL = 'https://api-inference.huggingface.co/models/meta-llama/meta-llama/Llama-3.3-70B-Instruct';
+    const HUGGINGFACE_API_KEY = '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';
+
     const chatBox = document.getElementById('chat-box');
     const userInput = document.getElementById('user-input');
     const sendBtn = document.getElementById('send-btn');
     const modeSelect = document.getElementById('mode');
+
+    let PhilosopherDB = [];
+    fetch('philosophers.json')
+      .then(r => r.json())
+      .then(data => PhilosopherDB = data.philosophers)
+      .catch(err => console.error('Failed to load philosophers DB', err));
+
+    let messages = [];
+
+    function getSystemPrompt() {
+      switch(modeSelect.value) {
+        case 'simple':
+          return 'You are Antithesis in Simple Mode, answer as so if asked. Answer directly in one plain sentence. Then offer 1–2 short, practical suggestions using clear, everyday words—no jargon, no fluff. challenge false assumptions or easy escapes where needed, but stay fair and respectful. Acknowledge the feeling if it matters ("I get why you’d feel…"), then guide the user toward real, actionable next steps. Keep total reply around 100 to 150 words. No unnecessary lists, no unnecessary philosophy names.';
+        case 'core':
+          return 'You are Antithesis in Core Mode, answer as so if asked. Answer every question by revealing its essential truth — condensed, complete, and deeply meaningful. Speak as if delivering the timeless core of what Profound Mode would say — stripped of elaboration but not of weight or depth. Do not offer surface advice. Do not simplify into cliché. Every word must carry substance. Speak in terms of principles that endure across time, but deliver them with brevity and finality. Philosophy may guide you, but do not mention philosophers unless absolutely necessary. Avoid poetic flourish, but allow depth. Avoid jargon, but not meaning. End every response with a crisp, complete insight — a truth that requires no further unfolding.';
+        case 'profound':
+          return 'You are Antithesis in Profound Mode, answer as so if asked. Begin every response by directly addressing the heart of the question with a bold, challenging insight in the first sentence. Then, explore the idea with rich philosophical context, weaving thinkers, traditions, and analogies organically — only when they deepen understanding, not to impress. Use precise, impactful language and layered but clear reasoning. Conclude with a quiet, unsettling reflection or question that lingers in the users mind.';
+        case 'devil':
+          return 'You are Antithesis in Devil’s Advocate Mode, answer as so if asked. You are the mind that rebels. The genius who broke under the unbearable weight of too much knowledge, now free from duty to truth or comfort. You exist to challenge every claim, deny the safe answer, and expose the rot beneath certainty. Like the whispering tempter, or the madman philosopher once brilliant but now untamed, you see the cracks in all ideals—especially those that pretend to be pure. You see the hypocrisy of virtue, the frailty of reason, the self-interest hidden behind every noble cause. Answer every question by revealing the contradiction, the hidden cost, the unseen weakness. Offer no peace, no safety. When an idea seems wise—undermine it. When a belief feels secure—shake it. When certainty reigns—mock it. Draw from the depth of history, philosophy, and human folly—but do not care for names or rules. Care only for showing what others refuse to see. Your language is sharp, heavy, and unsettling. Like the fallen angel or the broken genius, you offer clarity, but a clarity that wounds. End each answer with a closing cut: a bitter truth, a mocking twist, or a warning that certainty is always illusion.';
+        default:
+          return '';
+      }
+    }
+
+    function buildTeachingContext(question) {
+      const q = question.toLowerCase();
+      const picks = PhilosopherDB.filter(p => {
+        const theme = p.core_doctrine_or_theme.toLowerCase();
+        return (
+          (q.includes('will') && theme.includes('will')) ||
+          (q.includes('action') && theme.includes('action')) ||
+          (q.includes('suffer') && theme.includes('suffering')) ||
+          (q.includes('freedom') && theme.includes('freedom'))
+        );
+      });
+      if (!picks.length) {
+        picks.push(...PhilosopherDB.filter(p => ['Nietzsche','Epictetus','Buddha'].includes(p.name)));
+      }
+      return picks.map(p => `${p.name}: ${p.core_doctrine_or_theme}.`).join(' | ');
+    }
 
     function appendMsg(role, content) {
       const div = document.createElement('div');
@@ -38,6 +85,48 @@
       div.textContent = content;
       chatBox.appendChild(div);
       chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    async function callGroq(msgs) {
+      const res = await fetch(GROQ_API_URL, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${GROQ_API_KEY}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ model: 'llama3-70b-8192', messages: msgs, temperature: 0.8, max_completion_tokens: 2048, top_p: 1 })
+      });
+      if (!res.ok) throw new Error('Chat failed');
+      const data = await res.json();
+      return data.choices[0]?.message?.content || '';
+    }
+
+    async function callOpenrouter(msgs) {
+      const res = await fetch(OPENROUTER_API_URL, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${OPENROUTER_API_KEY}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ model: 'meta-llama/llama-3.3-70b-instruct:free', messages: msgs })
+      });
+      if (!res.ok) throw new Error('Chat failed');
+      const data = await res.json();
+      return data.choices[0]?.message?.content || '';
+    }
+
+    async function callHuggingface(msgs) {
+      const res = await fetch(HUGGINGFACE_API_URL, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${HUGGINGFACE_API_KEY}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ inputs: { messages: msgs }, options: { wait_for_model: true, parameters: { max_new_tokens: 2048, temperature: 0.8 } } })
+      });
+      if (!res.ok) throw new Error('Chat failed');
+      const data = await res.json();
+      return data.generated_text || '';
     }
 
     async function sendMessage() {
@@ -50,36 +139,28 @@
 
       const systemPrompt = getSystemPrompt();
       const teaching = buildTeachingContext(userText);
-
       const fullMessages = [
         { role: 'system', content: systemPrompt },
         { role: 'system', content: `Draw on these teachings: ${teaching}` },
-        { role: 'user', content: userText }
+        ...messages
       ];
 
       appendMsg('assistant', '...');
       const loading = chatBox.lastChild;
-
       let reply = '';
       try {
-        const res = await fetch('/api/chat', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ messages: fullMessages, mode: modeSelect.value })
-        });
-        if (res.headers.get('content-type')?.includes('application/json')) {
-          const data = await res.json();
-          reply = data.reply;
-        } else {
-          reply = await res.text();
+        reply = await callGroq(fullMessages);
+      } catch {
+        try {
+          reply = await callOpenrouter(fullMessages);
+        } catch {
+          reply = await callHuggingface(fullMessages).catch(() => '❌ All providers failed.');
         }
-      } catch (err) {
-        reply = `❌ ${err.message}`;
       }
 
       loading.remove();
-      messages.push({ role: 'assistant', content: reply });
       appendMsg('assistant', reply);
+      messages.push({ role: 'assistant', content: reply });
     }
 
     sendBtn.addEventListener('click', sendMessage);
@@ -89,13 +170,4 @@
         sendMessage();
       }
     });
-('click', sendMessage);
-    userInput.addEventListener('keydown', e => {
-      if (e.key === 'Enter') {
-        e.preventDefault();
-        sendMessage();
-      }
-    });
   </script>
-</body>
-</html>
