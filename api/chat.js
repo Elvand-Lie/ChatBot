@@ -81,7 +81,7 @@ function buildTeachingContext(question, philosophers) {
 }
 
 async function loadPhilosophers() {
-  const filePath = path.resolve(process.cwd(), 'philosophers.json');
+  const filePath = path.resolve(__dirname, 'philosophers.json'); // Now resolves inside /api
   const raw = await fs.readFile(filePath, 'utf8');
   return JSON.parse(raw).philosophers;
 }
