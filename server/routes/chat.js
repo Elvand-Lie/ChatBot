@@ -3,13 +3,11 @@ const fetch = require('node-fetch');
 const path = require('path');
 const fs = require('fs/promises');
 
-// Load philosophers from JSON file\async function loadPhilosophers()
 async function loadPhilosophers() {
   const raw = await fs.readFile(path.resolve(__dirname, '../philosophers.json'), 'utf8');
   return JSON.parse(raw).philosophers;
 }
 
-// Build teaching context based on question keywords
 function buildContext(question, philosophers) {
   const q = question.toLowerCase();
   let picks = philosophers.filter(p => {
@@ -27,7 +25,6 @@ function buildContext(question, philosophers) {
   return picks.map(p => `${p.name}: ${p.core_doctrine_or_theme}.`).join(' | ');
 }
 
-// Multi-provider functions (fill in actual endpoints & keys)
 async function callGroq(messages) {
   const res = await fetch(process.env.GROQ_API_URL, {
     method: 'POST',
@@ -70,7 +67,6 @@ async function callHuggingface(messages) {
   return data.generated_text || '';
 }
 
-// Generate system prompt based on selected mode
 function getSystemPrompt(mode) {
   switch (mode) {
     case 'simple':
