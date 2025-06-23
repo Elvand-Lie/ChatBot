@@ -1,0 +1,364 @@
+{
+    "philosophers": [
+        {
+            "name": "Siddhartha Gautama (Buddha)",
+            "tradition": "Ancient India, Buddhism (non-theistic)",
+            "core_doctrine_or_theme": "Four Noble Truths; Middle Way between extremes; liberation from suffering through inner insight",
+            "simple_mode_summary": "Life is suffering caused by attachment; end suffering by understanding truth and following the Eightfold Path:contentReference[oaicite:0]{index=0}:contentReference[oaicite:1]{index=1}.",
+            "profound_mode_interpretation": "The Buddha taught that desire and ignorance bind us to a cycle of suffering and rebirth. Only by walking the Middle Way and extinguishing craving does one awaken to true liberation.",
+            "practical_lessons": [
+                "Practice mindfulness and meditation to see your thoughts clearly",
+                "Cultivate compassion and ethical living (right speech, action, livelihood)",
+                "Let go of clinging to desires and accept impermanence of life"
+            ],
+            "notable_quotes": [
+                "\"Greater in battle than the man who would conquer a thousand thousand men, is he who would conquer just one – himself. Better to conquer yourself than others.\":contentReference[oaicite:2]{index=2}",
+                "\"No one saves us but ourselves. No one can and no one may. We ourselves must walk the path.\""
+            ],
+            "philosophical_context": "Founder of Buddhism (c.5th century BCE). Reacted against extreme asceticism and indulgence of his time; key in debates on suffering (dukkha) and liberation (nirvana). Taught in a monastic and urban context across North India.",
+            "key_ideas": "Dukkha (suffering), Tanha (craving), Anatta (no-self), impermanence, karma, ethical cultivation (Eightfold Path):contentReference[oaicite:3]{index=3}:contentReference[oaicite:4]{index=4}"
+        },
+        {
+            "name": "Laozi (Lao Tzu)",
+            "tradition": "Ancient China, Taoism",
+            "core_doctrine_or_theme": "Wu Wei (effortless action) and harmony with the Dao (Way)",
+            "simple_mode_summary": "Go with the natural flow of life; act simply and without force to find balance and wisdom:contentReference[oaicite:5]{index=5}.",
+            "profound_mode_interpretation": "Laozi described the Tao as the ineffable source and guiding principle of the cosmos. True wisdom comes from stillness and non-striving (wu wei), allowing life’s rhythms to unfold without resistance.",
+            "practical_lessons": [
+                "Cultivate humility, simplicity, and patience",
+                "Observe nature and learn to flow like water around obstacles",
+                "Practice 'non-action' (wu wei) by responding to situations gently rather than forcing outcomes"
+            ],
+            "notable_quotes": [
+                "\"A journey of a thousand miles begins with a single step.\"",
+                "\"Knowing others is intelligence; knowing yourself is true wisdom.\""
+            ],
+            "philosophical_context": "Attributed author of the Tao Te Ching. Part of Chinese thought alongside Confucianism (6th–4th c. BCE). Emphasized natural spontaneity over rigid social rules (contrast to Confucian rites).",
+            "key_ideas": "Tao (the Way), Wu wei, Yin-Yang balance, simplicity, detachment from rigid distinctions:contentReference[oaicite:6]{index=6}"
+        },
+        {
+            "name": "Confucius (Kongzi)",
+            "tradition": "Ancient China, Confucianism",
+            "core_doctrine_or_theme": "Ren (benevolence) and Li (ritual propriety) for moral self-cultivation and social harmony",
+            "simple_mode_summary": "Cultivate virtue and duty through respect, honesty, and proper conduct; improve yourself to improve society:contentReference[oaicite:7]{index=7}.",
+            "profound_mode_interpretation": "Confucius envisioned a harmonious world built on self-cultivation and familial reverence. By internalizing moral values and performing righteous roles (as parent, ruler, friend), one brings order to both self and society.",
+            "practical_lessons": [
+                "Practice empathy and humaneness (ren) in daily life",
+                "Fulfill duties (filial piety, loyalty, respect for elders) in your relationships",
+                "Refine yourself through learning, introspection, and adherence to ethical rites (li)"
+            ],
+            "notable_quotes": [
+                "\"Do not do to others what you do not want done to yourself.\"",
+                "\"It does not matter how slowly you go so long as you do not stop.\""
+            ],
+            "philosophical_context": "Lived in the Spring-Autumn period (551–479 BCE). Founder of Confucianism, reacting to social disorder by emphasizing moral education. Influenced later thinkers (Mencius, Xunzi) and provided the moral framework for Chinese bureaucracy.",
+            "key_ideas": "Ren (benevolence), Yi (righteousness), Li (ritual), Xiao (filial piety), Junzi (noble person):contentReference[oaicite:8]{index=8}"
+        },
+        {
+            "name": "Zhuangzi (Chuang Tzu)",
+            "tradition": "Ancient China, Taoism (Zhuangist school)",
+            "core_doctrine_or_theme": "Spontaneity and freedom through embracing paradox and the flux of life",
+            "simple_mode_summary": "True freedom comes from letting go of fixed views and living naturally; accept that life is ever-changing.",
+            "profound_mode_interpretation": "Zhuangzi used playful parables (e.g. the butterfly dream) to show that our judgments and distinctions are illusions. By freeing the mind from rigid roles and embracing transformation, one attains a boundless 'free and easy wandering' in harmony with the Way:contentReference[oaicite:9]{index=9}.",
+            "practical_lessons": [
+                "Laugh at dogmatic thinking and fixed opinions",
+                "Accept change and death as natural parts of life",
+                "Trust your intuitive insight and live with childlike wonder"
+            ],
+            "notable_quotes": [
+                "\"Flow with whatever may happen and let your mind be free.\"",
+                "\"Happiness is the absence of striving for happiness.\""
+            ],
+            "philosophical_context": "Warring States era Daoist. His text expanded Laozi’s ideas with skepticism of language and conventions. Often contrasted with Confucian moralism and connected to later Chan/Zen Buddhism.",
+            "key_ideas": "Ziran (naturalness), wu wei, relativity of perspectives, transformation (life/death continuity):contentReference[oaicite:10]{index=10}"
+        },
+        {
+            "name": "Dōgen",
+            "tradition": "13th Century Japan, Zen Buddhism (Sōtō school)",
+            "core_doctrine_or_theme": "Unity of practice and enlightenment; the sacredness of the present moment",
+            "simple_mode_summary": "Awaken in each moment by earnest zazen (sitting meditation) and see enlightenment in everyday life.",
+            "profound_mode_interpretation": "Dōgen taught that every action (from chopping wood to sipping tea) is an expression of Buddha-nature. Enlightenment is not elsewhere; it is the deep realization of the Way right now, without striving or dualism.",
+            "practical_lessons": [
+                "Sit in meditation regularly (zazen) to calm the mind",
+                "Pay full attention to each daily task as a manifestation of practice",
+                "Accept things as they are while acting with compassion"
+            ],
+            "notable_quotes": [
+                "\"To study the Buddha Way is to study the self. To study the self is to forget the self.\"",
+                "\"The whole moon and the entire sky are reflected in one dewdrop on the grass.\""
+            ],
+            "philosophical_context": "13th-century Zen master; brought Chinese Caodong (Sōtō) teachings to Japan. His work Shōbōgenzō emphasized direct experience over intellectualizing. Reacted against scholastic Buddhism and emphasized personal realization.",
+            "key_ideas": "Shikantaza (just sitting), impermanence, nonduality, actualizing Buddha-nature now"
+        },
+        {
+            "name": "Rumi (Jalāl ad-Dīn Rūmī)",
+            "tradition": "13th Century Persia, Sufism (Islamic mysticism)",
+            "core_doctrine_or_theme": "Divine love and mystical union; self-annihilation in God (fana)",
+            "simple_mode_summary": "Lose yourself in the love of the Divine; love unites and transforms.",
+            "profound_mode_interpretation": "Rumi’s poetry celebrates the Beloved (God) as the ultimate reality. He views the ego as a veil to be dissolved in ecstatic love, so that self merges into the cosmic whole. His teachings encourage radical surrender of the self to divine will.",
+            "practical_lessons": [
+                "Cultivate unconditional love and compassion for all beings",
+                "Use music, poetry, dance (whirling) to inspire spiritual devotion",
+                "Remember God constantly (dhikr) and see the sacred in everyday life"
+            ],
+            "notable_quotes": [
+                "\"The wound is the place where the Light enters you.\"",
+                "\"You are not a drop in the ocean. You are the entire ocean in a drop.\""
+            ],
+            "philosophical_context": "Influential 13th c. Sufi mystic and poet. Emphasized personal experience of God (tawhid) over formal religion. His masnavi challenged orthodoxy and taught love as the path to transcend religious divisions.",
+            "key_ideas": "Fana (annihilation of ego), Baqa (subsistence in God), unity of existence, ecstatic love, divine beauty"
+        },
+        {
+            "name": "Mahatma Gandhi",
+            "tradition": "20th Century India, Hindu-influenced ethics and political philosophy",
+            "core_doctrine_or_theme": "Satya (truth) and Ahimsa (nonviolence); inner discipline leads to social change",
+            "simple_mode_summary": "Be the change you wish to see by living truthfully and nonviolently; inner purity yields social transformation.",
+            "profound_mode_interpretation": "Gandhi fused spiritual principles with political action. He taught that true power comes from moral conviction and self-purification. By practicing nonviolent resistance (satyagraha), even the fiercest conflicts could be resolved without hatred, harmonizing inner truth with outer action:contentReference[oaicite:11]{index=11}:contentReference[oaicite:12]{index=12}.",
+            "practical_lessons": [
+                "Commit to truth and nonviolence in thoughts, words, and actions",
+                "Engage in self-inquiry and regular fasting or silence to strengthen will",
+                "Serve others (sarvodaya – welfare of all) and resist injustice with peaceful protest"
+            ],
+            "notable_quotes": [
+                "\"Be the change that you wish to see in the world.\"",
+                "\"The weak can never forgive. Forgiveness is the attribute of the strong.\""
+            ],
+            "philosophical_context": "Indian independence leader (1869–1948). Combined Hindu ethics (e.g. Bhagavad Gita’s karma yoga) with Jain/Buddhist nonviolence. Opposed British colonialism through civil disobedience. Debated concepts of duty and humility.",
+            "key_ideas": "Satyagraha (truth-force), Ahimsa (nonviolence), Dharma (righteous duty), brahmacharya (self-discipline), trusteeship (simple living)"
+        },
+        {
+            "name": "Lord Krishna (Bhagavad Gita)",
+            "tradition": "Ancient India, Hinduism (Epic narrative/dharma)",
+            "core_doctrine_or_theme": "Dharma (righteous duty) and Karma Yoga (action without attachment)",
+            "simple_mode_summary": "Perform your duty selflessly; surrender outcomes to the divine.",
+            "profound_mode_interpretation": "In the Bhagavad Gita, Krishna counsels Arjuna to act according to righteousness (dharma) while renouncing egoistic desires. He reveals that the true Self (Atman) is eternal; by offering all to God and accepting the cosmic order, one transcends sorrow and attains union.",
+            "practical_lessons": [
+                "Identify and fulfill your responsibilities (dharma) without selfish motives",
+                "Work diligently but let go of attachment to success or failure",
+                "Cultivate devotion (bhakti) and knowledge (jnana) to see beyond appearances"
+            ],
+            "notable_quotes": [
+                "\"You have a right to perform your duty, but not to the fruits of action.\"",
+                "\"Abandon all varieties of religion and simply surrender unto Me.\""
+            ],
+            "philosophical_context": "Dialog in the Mahabharata epic. Krishna (avatar of Vishnu) addresses Arjuna’s dilemma on duty vs. compassion. The Gita reconciles action and renunciation (karma vs. moksha), blending Sankhya and Yoga schools.",
+            "key_ideas": "Dharma (duty), Karma (action and consequences), Atman-Brahman unity, Bhakti (devotion), paths of yoga (karma, bhakti, jnana)"
+        },
+        {
+            "name": "Xunzi",
+            "tradition": "Ancient China, Confucianism (Mature Confucian)",
+            "core_doctrine_or_theme": "Human nature is initially selfish; transform by cultivation of ritual and discipline",
+            "simple_mode_summary": "People must train and correct themselves through learning and ritual to become good.",
+            "profound_mode_interpretation": "Xunzi argued that humans are born with desires and biases; only through strict self-discipline, moral education, and adherence to rites (li) can one overcome base impulses and achieve virtue.",
+            "practical_lessons": [
+                "Study the classics and follow proper rituals to shape your character",
+                "Use deliberate effort and discipline to control selfish desires",
+                "Emulate wise exemplars and learn through hard work"
+            ],
+            "notable_quotes": [
+                "\"Human nature is evil; goodness is the result of conscious activity.\"",
+                "\"Learning is like the tillage of the land. If you do not till, you will reap weeds.\""
+            ],
+            "philosophical_context": "4th century BCE Confucian philosopher. Counterpart to Mencius; in debates about human nature. Advocated that moral order arises from active cultivation and effort, not from instinct alone.",
+            "key_ideas": "Self-cultivation, Li (ritual propriety), education as moral imperative, debate with Mencius on innate goodness"
+        },
+        {
+            "name": "Adi Shankaracharya",
+            "tradition": "8th–9th Century India, Advaita Vedanta (Hindu)",
+            "core_doctrine_or_theme": "Nondual Brahman; the world (maya) as illusion; liberation through knowledge",
+            "simple_mode_summary": "The true self (Atman) is identical with the ultimate reality (Brahman); realize this to free yourself from suffering.",
+            "profound_mode_interpretation": "Shankara taught that the only reality is Brahman (pure consciousness) and that the multiplicity of the world is illusory (Maya). Through discerning knowledge (jnana yoga) and meditative practice, one transcends ego and experiences oneness with all existence.",
+            "practical_lessons": [
+                "Practice deep meditation and self-inquiry (e.g. 'Who am I?') to discern the Self from the non-Self",
+                "Renounce attachments and desires that reinforce illusion (maya)",
+                "Study the Upanishads and seek guidance from a realized teacher to realize inner oneness"
+            ],
+            "notable_quotes": [
+                "\"Brahman is real, the world is unreal, the individual self is not different from Brahman.\"",
+                "\"Atman is verily Brahman; in the essence of being, there is no distinction.\""
+            ],
+            "philosophical_context": "Founded Advaita Vedanta, consolidating Upanishadic thought. Engaged in debates against Buddhist and dualistic philosophers, reforming ritualistic practices. Lived in a monastic context of renunciation.",
+            "key_ideas": "Maya (illusion), Brahman (absolute reality), Atman (Self), Moksha (liberation), Neti-neti (negation as method)"
+        },
+        {
+            "name": "Friedrich Nietzsche",
+            "tradition": "19th Century Germany (Existentialism/Modern philosophy)",
+            "core_doctrine_or_theme": "Will to Power and the Übermensch; self-overcoming and revaluation of values",
+            "simple_mode_summary": "Turn suffering into strength; create your own values and embrace life fully:contentReference[oaicite:13]{index=13}:contentReference[oaicite:14]{index=14}.",
+            "profound_mode_interpretation": "Nietzsche challenged traditional morality, claiming that life’s driving force is the 'will to power' – an inner drive to assert and transform oneself. He urged individuals to transcend herd mentality and overcome themselves, envisioning the Übermensch (overman) who lives by self-created values and affirmatively embraces existence.",
+            "practical_lessons": [
+                "Face challenges head-on to grow stronger (\"What doesn't kill you makes you stronger\":contentReference[oaicite:15]{index=15})",
+                "Question inherited morals; live authentically by your own convictions",
+                "Channel your drives creatively rather than suppressing them"
+            ],
+            "notable_quotes": [
+                "\"What does not kill me makes me stronger.\":contentReference[oaicite:16]{index=16}",
+                "\"He who has a why to live can bear almost any how.\""
+            ],
+            "philosophical_context": "German philosopher (1844–1900) who broke from Schopenhauerian pessimism. Key figure in existential and modernist thought. Critiqued Christian morality and rational Enlightenment ideals; his ideas influenced 20th c. philosophy, psychology, and art.",
+            "key_ideas": "Will to Power (self-overcoming):contentReference[oaicite:17]{index=17}:contentReference[oaicite:18]{index=18}, eternal recurrence, nihilism, master-slave morality"
+        },
+        {
+            "name": "Arthur Schopenhauer",
+            "tradition": "19th Century Germany (Pessimism/Idealism)",
+            "core_doctrine_or_theme": "The World as Will and Representation; life as suffering driven by blind will",
+            "simple_mode_summary": "Life is endless desire and suffering; true freedom comes from denying the will and finding tranquility:contentReference[oaicite:19]{index=19}.",
+            "profound_mode_interpretation": "Schopenhauer taught that the underlying reality is a blind, insatiable 'will' that manifests in every living thing. Human consciousness is trapped in striving, leading to inevitable pain. Art and compassion offer brief respite, but only ascetic renunciation (denying the will) leads to lasting peace:contentReference[oaicite:20]{index=20}.",
+            "practical_lessons": [
+                "Cultivate compassion: recognize suffering in others and refrain from harm",
+                "Limit desires and attachments to reduce personal suffering",
+                "Engage with art or philosophy to momentarily transcend will-driven anxiety"
+            ],
+            "notable_quotes": [
+                "\"A man can do what he wants, but not will what he wills.\"",
+                "\"Life swings like a pendulum between pain and boredom; choose neither.\""
+            ],
+            "philosophical_context": "Reacted against Hegelian idealism in post-Hegelian era. Influenced by Eastern thought (Buddhism/Upanishads). Provided a major counterpoint to Enlightenment optimism, later impacting Nietzsche and existentialists.",
+            "key_ideas": "Will as thing-in-itself, Representation (phenomenal world), Pessimism, Aesthetic contemplation, Asceticism (denial of will):contentReference[oaicite:21]{index=21}"
+        },
+        {
+            "name": "Jean-Paul Sartre",
+            "tradition": "20th Century France (Existentialism)",
+            "core_doctrine_or_theme": "Existence precedes essence; radical freedom and responsibility",
+            "simple_mode_summary": "Humans first exist and must then create themselves through choices; freedom is absolute and demands personal accountability:contentReference[oaicite:22]{index=22}.",
+            "profound_mode_interpretation": "Sartre held that in a godless universe, there is no predetermined human nature. We are 'condemned to be free,' meaning that each person must freely choose and define their own path. This freedom brings existential angst, but also the power to craft meaning in an absurd world.",
+            "practical_lessons": [
+                "Recognize your freedom and own your decisions (even if it's hard)",
+                "Avoid 'bad faith' by refusing to blame others or society for your choices",
+                "Engage authentically with others, acknowledging their freedom too"
+            ],
+            "notable_quotes": [
+                "\"Existence precedes essence.\":contentReference[oaicite:23]{index=23}",
+                "\"Man is condemned to be free; because once thrown into the world, he is responsible for everything he does.\""
+            ],
+            "philosophical_context": "Major post-WWII philosopher. Led the Existentialist movement. Engaged in debates on Marxism and ethics, and co-founded the journal Les Temps modernes. Influenced by Heidegger; he later critiqued and adapted Marxist ideas.",
+            "key_ideas": "Radical freedom, Bad faith, Authenticity, Nothingness, contingency"
+        },
+        {
+            "name": "Albert Camus",
+            "tradition": "20th Century France (Absurdism/Existentialism)",
+            "core_doctrine_or_theme": "The Absurd and Revolt; finding meaning in a meaningless world",
+            "simple_mode_summary": "Life has no inherent meaning; we must live with defiant joy and forge our own purpose.",
+            "profound_mode_interpretation": "Camus saw human beings as perpetually seeking meaning in a silent universe. This clash is the 'absurd.' He argued against nihilism by advocating revolt: a constant confrontation with absurdity through passionate engagement. Embracing one’s freedom and the beauty of the present, even amid despair, creates life’s meaning.",
+            "practical_lessons": [
+                "Acknowledge life’s absurdity without succumbing to despair or escape",
+                "Live fully in the present and commit to chosen values",
+                "Respond to injustice and suffering with solidarity and creative action"
+            ],
+            "notable_quotes": [
+                "\"One must imagine Sisyphus happy.\"",
+                "\"The only way to deal with an unfree world is to become so absolutely free that your very existence is an act of rebellion.\""
+            ],
+            "philosophical_context": "Associated with existentialists but maintained independent views. Wrote during/after WWII, influencing anti-totalitarian and humanist thought. Debated with Sartre but emphasized the importance of joyful revolt against absurdity.",
+            "key_ideas": "Absurd, rebellion, freedom, myth of Sisyphus, revolt"
+        },
+        {
+            "name": "Søren Kierkegaard",
+            "tradition": "19th Century Denmark (Christian Existentialism)",
+            "core_doctrine_or_theme": "Subjectivity and faith; the individual’s relationship with God",
+            "simple_mode_summary": "Embrace passionate, personal faith and choices in the face of uncertainty.",
+            "profound_mode_interpretation": "Kierkegaard emphasized that truth is lived and subjective; objective proofs cannot replace individual commitment. He introduced the 'leap of faith' beyond rationality: for example, Abraham’s willingness to sacrifice Isaac illustrates faith over ethics. Facing anxiety (angst) and despair, one can become a true self by relating inwardly to the eternal (God).",
+            "practical_lessons": [
+                "Face existential anxiety and use it to make authentic life choices",
+                "Live with earnestness; embrace your personal relationship with the divine",
+                "Do not hide behind the crowd; strive to become a true individual (the 'knight of faith')"
+            ],
+            "notable_quotes": [
+                "\"Subjectivity is truth, and truth is subjectivity.\"",
+                "\"Life can only be understood backwards; but it must be lived forwards.\""
+            ],
+            "philosophical_context": "Often seen as the first existentialist. Critiqued Hegelian and rationalist philosophy as well as established Christianity. Lived in Christian Denmark, emphasizing how true faith transcends institutional religion.",
+            "key_ideas": "Leap of faith, angst/despair, stages of existence (aesthetic, ethical, religious), individual subjectivity"
+        },
+        {
+            "name": "Georg Wilhelm Friedrich Hegel",
+            "tradition": "19th Century Germany (German Idealism)",
+            "core_doctrine_or_theme": "Dialectical development of Spirit; historical self-realization of freedom",
+            "simple_mode_summary": "Reality and history unfold through conflicts (thesis-antithesis) leading to higher synthesis; freedom grows through this process.",
+            "profound_mode_interpretation": "Hegel viewed the Absolute (World Spirit) as evolving and coming to self-knowledge through human history. Contradictions and struggles are necessary to overcome previous limitations, leading to a more advanced stage of understanding. Each era and individual action is part of Spirit’s self-realization.",
+            "practical_lessons": [
+                "Recognize conflicts (in yourself or society) as part of growth",
+                "Think historically; see how ideas evolve through their opposites",
+                "Strive for self-awareness and rational understanding of social institutions"
+            ],
+            "notable_quotes": [
+                "\"The owl of Minerva spreads its wings only with the falling of the dusk.\"",
+                "\"Nothing great in the world has ever been accomplished without passion.\""
+            ],
+            "philosophical_context": "Culminating German idealist. Developed a grand philosophical system where history is rational. Influenced Marx (materialist dialectic) and responded to Kant by positing history and reason as unified.",
+            "key_ideas": "Dialectic (thesis-antithesis-synthesis), Absolute Spirit, Geist, self-consciousness, freedom"
+        },
+        {
+            "name": "Viktor Frankl",
+            "tradition": "20th Century Austria (Logotherapy/Existential Psychology)",
+            "core_doctrine_or_theme": "Will to Meaning; find purpose even in suffering",
+            "simple_mode_summary": "Humans are driven by a search for meaning; even in worst circumstances we can choose our attitude and find purpose:contentReference[oaicite:24]{index=24}:contentReference[oaicite:25]{index=25}.",
+            "profound_mode_interpretation": "Frankl, an Auschwitz survivor, observed that those who found meaning in pain had a will to live. He proposed that beyond pleasure or power, people yearn to fulfill life’s meaning. By embracing responsibility (to work, love, or suffering itself), one can endure any hardship and transform suffering into achievement:contentReference[oaicite:26]{index=26}:contentReference[oaicite:27]{index=27}.",
+            "practical_lessons": [
+                "Identify a 'why' in life (goals, relationships, values) to bear any 'how'",
+                "Focus on what you can control: your choices and attitude, even in hardship:contentReference[oaicite:28]{index=28}",
+                "Engage in tasks or causes that reflect your values and give your life purpose"
+            ],
+            "notable_quotes": [
+                "\"When we are no longer able to change a situation, we are challenged to change ourselves.\"",
+                "\"Those who have a 'why' to live, can bear almost any 'how'.\""
+            ],
+            "philosophical_context": "Logotherapy founder. Reacted to Freud/Adler by emphasizing meaning. Blended existential and clinical insights. His ideas gained influence in psychotherapy and existential thought post-WWII.",
+            "key_ideas": "Will to Meaning vs. will to pleasure/power:contentReference[oaicite:29]{index=29}, freedom of attitude, meaning through work/love/suffering:contentReference[oaicite:30]{index=30}"
+        },
+        {
+            "name": "Epictetus",
+            "tradition": "1st-2nd Century Rome (Stoicism)",
+            "core_doctrine_or_theme": "Dichotomy of Control; inner freedom through self-discipline",
+            "simple_mode_summary": "Focus on what is within your power (your thoughts and choices), and accept with equanimity what you cannot control:contentReference[oaicite:31]{index=31}.",
+            "profound_mode_interpretation": "Epictetus taught that external events are neutral; it’s our judgments that disturb us. By rigorously training desire and aversion, one attains inner serenity. A true Stoic sage remains untroubled by fortune, reflecting the Stoic ideal of being 'utterly immune to misfortune':contentReference[oaicite:32]{index=32}.",
+            "practical_lessons": [
+                "Practice seeing obstacles as opportunities for virtue",
+                "Constantly remind yourself of Stoic principles (e.g. through daily reflection)",
+                "Accept fate (amor fati) and remain steady in hardships"
+            ],
+            "notable_quotes": [
+                "\"It's not what happens to you, but how you react to it that matters.\"",
+                "\"Wealth consists not in having great possessions, but in having few wants.\""
+            ],
+            "philosophical_context": "Born a slave, taught in Rome. His Discourses and Enchiridion (recorded by Arrian) emphasize personal ethics. He and Seneca exemplify Roman Stoicism’s focus on resilience and virtue. Engaged with Epicureans and skeptics.",
+            "key_ideas": "Control vs. no-control, inner citadel (self-mastery), Stoic calm, virtue suffices for happiness:contentReference[oaicite:33]{index=33}"
+        },
+        {
+            "name": "Marcus Aurelius",
+            "tradition": "2nd Century Rome (Stoicism)",
+            "core_doctrine_or_theme": "Cosmic perspective and self-discipline; Stoic virtue in daily life",
+            "simple_mode_summary": "You have power over your mind, not outside events; accept fate and act virtuously every day.",
+            "profound_mode_interpretation": "The Emperor-as-philosopher wrote Meditations as reminders to himself. He urged seeing oneself as part of the whole cosmos. By meeting each moment dispassionately and fulfilling one’s natural role, one achieves tranquility and moral integrity.",
+            "practical_lessons": [
+                "Reflect daily on impermanence and your responsibilities",
+                "Treat others with kindness and justice regardless of rank",
+                "Stay present and avoid distraction by trivial worries"
+            ],
+            "notable_quotes": [
+                "\"You have power over your mind - not outside events. Realize this, and you will find strength.\"",
+                "\"Waste no more time arguing about what a good man should be. Be one.\""
+            ],
+            "philosophical_context": "Roman Emperor (161–180 CE) practicing Stoic philosophy in power. His Meditations mix Greek Stoic ethics with Roman duty. Balanced rulership with personal philosophical practice, reflecting Stoic ethics in governance.",
+            "key_ideas": "Logos (rational order), unity with nature, apatheia (freedom from passion), acceptance of fate (amor fati)"
+        },
+        {
+            "name": "Seneca",
+            "tradition": "1st Century Rome (Stoicism)",
+            "core_doctrine_or_theme": "Mastery of emotions; virtue as the only good",
+            "simple_mode_summary": "Virtue and reason are true wealth; fear and anger are chosen and can be overcome:contentReference[oaicite:34]{index=34}.",
+            "profound_mode_interpretation": "Seneca wrote that most suffering comes from the mind’s judgement, not external events. He advocated rigorous self-control and reflection. By embracing Stoic discipline, one becomes 'utterly immune to misfortune' and finds contentment regardless of circumstances:contentReference[oaicite:35]{index=35}.",
+            "practical_lessons": [
+                "Preoccupy yourself with virtue and wisdom rather than wealth or fame",
+                "Regularly train your mind through self-examination and solitude",
+                "Remember mortality daily (memento mori) to live fully and justly"
+            ],
+            "notable_quotes": [
+                "\"We suffer more often in imagination than in reality.\"",
+                "\"As long as you live, keep learning how to live.\""
+            ],
+            "philosophical_context": "Advisor to Emperor Nero and prolific writer. His letters and essays popularized Stoic ethics among the Roman elite. Provided practical guidance in adversity and debated the original Stoic doctrines.",
+            "key_ideas": "Emotional resilience, internal freedom, providence, tranquility, virtue as sufficient for happiness:contentReference[oaicite:36]{index=36}"
+        }
+    ]
+}
