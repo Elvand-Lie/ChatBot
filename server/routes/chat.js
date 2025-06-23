@@ -3,11 +3,13 @@ const fetch = require('node-fetch');
 const path = require('path');
 const fs = require('fs/promises');
 
+// Load philosophers from JSON file
 async function loadPhilosophers() {
   const raw = await fs.readFile(path.resolve(__dirname, '../philosophers.json'), 'utf8');
   return JSON.parse(raw).philosophers;
 }
 
+// Build teaching context based on question keywords
 function buildContext(question, philosophers) {
   const q = question.toLowerCase();
   let picks = philosophers.filter(p => {
@@ -25,48 +27,12 @@ function buildContext(question, philosophers) {
   return picks.map(p => `${p.name}: ${p.core_doctrine_or_theme}.`).join(' | ');
 }
 
-async function callGroq(messages) {
-  const res = await fetch(process.env.GROQ_API_URL, {
-    method: 'POST',
-    headers: {
-      'Authorization': `Bearer ${process.env.GROQ_API_KEY}`,
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ model: 'llama3-70b-8192', messages, temperature: 0.8, max_completion_tokens: 2048, top_p: 1 })
-  });
-  if (!res.ok) throw new Error('Groq call failed');
-  const { choices } = await res.json();
-  return choices[0]?.message?.content || '';
-}
+// Multi-provider stubs
+async function callGroq(messages)     { /* … */ }
+async function callOpenrouter(messages){ /* … */ }
+async function callHuggingface(messages){ /* … */ }
 
-async function callOpenrouter(messages) {
-  const res = await fetch(process.env.OPENROUTER_API_URL, {
-    method: 'POST',
-    headers: {
-      'Authorization': `Bearer ${process.env.OPENROUTER_API_KEY}`,
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ model: 'meta-llama/llama-3.3-70b-instruct:free', messages })
-  });
-  if (!res.ok) throw new Error('OpenRouter call failed');
-  const { choices } = await res.json();
-  return choices[0]?.message?.content || '';
-}
-
-async function callHuggingface(messages) {
-  const res = await fetch(process.env.HUGGINGFACE_API_URL, {
-    method: 'POST',
-    headers: {
-      'Authorization': `Bearer ${process.env.HUGGINGFACE_API_KEY}`,
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ inputs: { messages }, options: { wait_for_model: true, parameters: { max_new_tokens: 2048, temperature: 0.8 } } })
-  });
-  if (!res.ok) throw new Error('HuggingFace call failed');
-  const data = await res.json();
-  return data.generated_text || '';
-}
-
+// Generate system prompt based on selected mode
 function getSystemPrompt(mode) {
   switch (mode) {
     case 'simple':
@@ -86,6 +52,8 @@ router.post('/', async (req, res) => {
   try {
     const { messages: clientMessages = [], mode = 'simple' } = req.body;
     const philosophers = await loadPhilosophers();
+
+    // grab the last user message
     const lastMsg = clientMessages.slice(-1)[0] || {};
     const teaching = buildContext(lastMsg.content || '', philosophers);
     const systemPrompt = getSystemPrompt(mode);
@@ -96,13 +64,12 @@ router.post('/', async (req, res) => {
       ...clientMessages
     ];
 
+    // try Groq → OpenRouter → HuggingFace
     let reply;
-    try {
-      reply = await callGroq(fullMessages);
-    } catch {
-      try {
-        reply = await callOpenrouter(fullMessages);
-      } catch {
+    try { reply = await callGroq(fullMessages); }
+    catch {
+      try { reply = await callOpenrouter(fullMessages); }
+      catch {
         reply = await callHuggingface(fullMessages).catch(() => '❌ All providers failed.');
       }
     }
