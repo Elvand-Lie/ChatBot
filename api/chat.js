@@ -96,7 +96,13 @@ async function callGroq(messages) {
     stream: false
   });
 
-  return chatCompletion.choices?.[0]?.message?.content || '[Groq returned no response]';
+  return (
+  chatCompletion.choices?.[0]?.message?.content || 
+  chatCompletion.choices?.[0]?.delta?.content || 
+  chatCompletion.choices?.[0]?.text || 
+  '[Groq returned no response]'
+);
+
 }
 
 async function callOpenrouter(messages) {
