@@ -1,19 +1,20 @@
-// example fragment in public/bundle.js
-async function sendMessage() {
-  const txt = userInput.value.trim();
-  if (!txt) return;
+document.getElementById('sendBtn').addEventListener('click', async () => {
+    const userInput = document.getElementById('userInput').value;
 
-  // append user message locally...
-  messages.push({ role: 'user', content: txt });
+    const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            provider: 'groq',  // or 'openrouter', 'huggingface'
+            messages: [
+                { role: 'user', content: userInput }
+            ]
+        })
+    });
 
-  // send to backend
-  const resp = await fetch('/api/chat', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ messages, mode: modeSelect.value })
-  });
-  const { reply } = await resp.json();
+    const data = await response.json();
+    console.log('AI says:', data.reply);
 
-  // append AI reply locally...
-  messages.push({ role: 'assistant', content: reply });
-}
+    // Example: Display reply on page
+    document.getElementById('responseBox').innerText = data.reply;
+});
