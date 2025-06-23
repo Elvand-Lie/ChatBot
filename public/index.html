@@ -25,4 +25,53 @@
     </div>
   </main>
   <footer>Antithesis © 2025</footer>
-  <script src="bundle.js" type="module"></script>
+
+  <script type="module">
+    const chatBox = document.getElementById('chat-box');
+    const userInput = document.getElementById('user-input');
+    const sendBtn = document.getElementById('send-btn');
+    const modeSelect = document.getElementById('mode');
+
+    function appendMsg(role, content) {
+      const div = document.createElement('div');
+      div.className = `msg ${role === 'user' ? 'user-msg' : 'ai-msg'}`;
+      div.textContent = content;
+      chatBox.appendChild(div);
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    async function sendMessage() {
+      const text = userInput.value.trim();
+      if (!text) return;
+      appendMsg('user', text);
+      userInput.value = '';
+
+      appendMsg('assistant', '...');
+      try {
+        const res = await fetch('/api/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ messages: [{ role: 'user', content: text }], mode: modeSelect.value })
+        });
+        const data = await res.json();
+        const reply = data.reply || 'Error: no reply';
+        // remove loading
+        const loading = chatBox.querySelector('.ai-msg:last-child');
+        if (loading) loading.remove();
+        appendMsg('assistant', reply);
+      } catch (err) {
+        const loading = chatBox.querySelector('.ai-msg:last-child');
+        if (loading) loading.textContent = `❌ ${err.message}`;
+      }
+    }
+
+    sendBtn.addEventListener('click', sendMessage);
+    userInput.addEventListener('keydown', e => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        sendMessage();
+      }
+    });
+  </script>
+</body>
+</html>
