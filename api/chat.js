@@ -81,10 +81,11 @@ function buildTeachingContext(question, philosophers) {
 }
 
 async function loadPhilosophers() {
-  const filePath = path.resolve(__dirname, 'philosophers.json'); // Now resolves inside /api
+  const filePath = path.resolve('api', 'philosophers.json'); // No __dirname needed
   const raw = await fs.readFile(filePath, 'utf8');
   return JSON.parse(raw).philosophers;
 }
+
 
 async function callGroq(messages) {
   const chatCompletion = await groq.chat.completions.create({
