@@ -1,10 +1,6 @@
-import { Groq } from 'groq-sdk';
+import fetch from 'node-fetch';
 import path from 'path';
 import fs from 'fs/promises';
-
-const groq = new Groq({
-  apiKey: process.env.GROQ_API_KEY
-});
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -87,16 +83,16 @@ async function loadPhilosophers() {
 }
 
 async function callGroq(messages) {
-  const chatCompletion = await groq.chat.completions.create({
-    messages,
-    model: 'llama3-70b-8192', // Adjust model here if needed
-    temperature: 0.6,
-    max_completion_tokens: 4096,
-    top_p: 0.95,
-    stream: false
+  const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${process.env.GROQ_API_KEY}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ model: 'llama3-8b-8192', messages })
   });
-
-  return chatCompletion.choices?.[0]?.message?.content || '[Groq returned no response]';
+  const data = await res.json();
+  return data.choices?.[0]?.message?.content || '[Groq returned no response]';
 }
 
 async function callOpenrouter(messages) {
