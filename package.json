@@ -1,4 +1,6 @@
 {
+  "start": "node server/server.js",
+  "type": "module",
   "name": "antithesis-chat",
   "version": "1.0.0",
   "main": "index.js",
