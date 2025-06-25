@@ -2,3 +2,6 @@
 /.env
 .vercel
 /api
+/package.json
+/vercel.json
+/public/bundle.js
