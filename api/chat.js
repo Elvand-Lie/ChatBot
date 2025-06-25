@@ -90,7 +90,7 @@ async function loadPhilosophers() {
 async function callGroq(messages) {
   const chatCompletion = await groq.chat.completions.create({
     messages,
-    model: 'deepseek-r1-distill-llama-70b', // Adjust model here if needed
+    model: 'llama-3.3-70b-versatile', // Adjust model here if needed
     temperature: 0.6,
     max_completion_tokens: 4096,
     top_p: 0.95,
