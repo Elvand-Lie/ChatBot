@@ -43,7 +43,7 @@ export default async function handler(req, res) {
 
     res.status(200).json({ reply });
   } catch (err) {
-    cconsole.error('Serverless error:', err);
+    console.error('Serverless error:', err);
     res.status(500).json({ error: err.message, stack: err.stack });
   }
 }
