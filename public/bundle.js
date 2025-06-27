@@ -47,3 +47,11 @@ function typeTextEffect(container, text, speed = 20) {
         if (i >= text.length) clearInterval(interval);
     }, speed);
 }
+
+document.getElementById('user-input').addEventListener('keydown', e => {
+  if (e.key === 'Enter' && !e.shiftKey) {
+    e.preventDefault();
+    document.getElementById('send-btn').click();
+  }
+});
+
