@@ -64,8 +64,6 @@
       font-size: 1.2rem;
       cursor: pointer;
       padding: 0.4rem;
-      margin-left: 5px;
-      margin-right: 5px;
     }
     .control-btn:hover {
       opacity: 0.8;
@@ -94,6 +92,7 @@
     .tool-menu {
       position: absolute;
       bottom: 60px;
+      left: 50px;
       background: #222;
       border: 1px solid #444;
       border-radius: 8px;
@@ -102,7 +101,6 @@
       flex-direction: column;
       gap: 0.3rem;
       animation: fadeInUp 0.25s ease-out forwards;
-      width: 200px;
     }
     .tool-menu.show {
       display: flex;
@@ -138,9 +136,9 @@
     <div style="position: relative;">
       <button class="control-btn" id="tools-btn">🛠 Tools</button>
       <div class="tool-menu" id="tool-menu">
-        <div class="mode-option active" data-mode="simple">Simple & Concise</div>
-        <div class="mode-option" data-mode="core">Core & intellectual</div>
-        <div class="mode-option" data-mode="profound">Profound & Detailed</div>
+        <div class="mode-option active" data-mode="simple">Simple</div>
+        <div class="mode-option" data-mode="core">Core</div>
+        <div class="mode-option" data-mode="profound">Profound</div>
         <div class="mode-option" data-mode="devil">Devil's Advocate</div>
       </div>
     </div>
@@ -173,7 +171,7 @@
 
       if (!userInput) return;
 
-      chatBox.innerHTML += <div class="msg user-msg">${userInput}</div>;
+      chatBox.innerHTML += `<div class="msg user-msg">${userInput}</div>`;
       userInputEl.value = '';
 
       try {
@@ -194,7 +192,7 @@
         typeTextEffect(aiDiv, data.reply || '[No response]');
 
       } catch (err) {
-        chatBox.innerHTML += <div class="msg error-msg">❌ Error: Unable to fetch AI response.</div>;
+        chatBox.innerHTML += `<div class="msg error-msg">❌ Error: Unable to fetch AI response.</div>`;
       }
     });
 
