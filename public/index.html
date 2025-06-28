@@ -36,7 +36,7 @@
       color: #eee;
       border: 1px solid #444;
       padding: 0.4rem;
-      margin-bottom: 1rem;
+      margin-left: 0.5rem;
     }
 
     #chat-box {
@@ -69,7 +69,7 @@
       border-radius: 4px;
     }
 
-    #send-btn {
+    #send-btn, .icon-btn {
       padding: 0.6rem 1rem;
       font-size: 1rem;
       background: #444;
@@ -80,7 +80,7 @@
       cursor: pointer;
     }
 
-    #send-btn:hover {
+    #send-btn:hover, .icon-btn:hover {
       background: #666;
     }
 
@@ -98,18 +98,22 @@
   <header>Antithesis Chat</header>
 
   <main>
-    <label for="mode">Select Mode:</label>
-    <select id="mode">
-      <option value="simple">Simple</option>
-      <option value="core">Core</option>
-      <option value="profound">Profound</option>
-      <option value="devil">Devil's Advocate</option>
-    </select>
+    <div class="chat-input" style="margin-bottom: 1rem;">
+      <button class="icon-btn" id="upload-btn">➕</button>
+      <button class="icon-btn" id="mode-btn">🛠</button>
+      <select id="mode">
+        <option value="simple">Simple</option>
+        <option value="core">Core</option>
+        <option value="profound">Profound</option>
+        <option value="devil">Devil's Advocate</option>
+      </select>
+    </div>
 
     <div id="chat-box"></div>
 
     <div class="chat-input">
       <input type="text" id="user-input" placeholder="Type your message..." />
+      <button class="icon-btn">🎤</button>
       <button id="send-btn">Send</button>
     </div>
   </main>
