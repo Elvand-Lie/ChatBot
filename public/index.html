@@ -31,14 +31,6 @@
       padding: 1rem;
     }
 
-    #mode {
-      background: #222;
-      color: #eee;
-      border: 1px solid #444;
-      padding: 0.4rem;
-      margin-left: 0.5rem;
-    }
-
     #chat-box {
       flex: 1;
       overflow-y: auto;
@@ -59,65 +51,134 @@
     .ai-msg { color: #8aff80; }
     .error-msg { color: #ff6b6b; }
 
-    #user-input {
-      flex: 1;
-      padding: 0.6rem;
-      font-size: 1rem;
-      border: 1px solid #444;
-      background: #222;
-      color: #eee;
-      border-radius: 4px;
+    .chat-input {
+      display: flex;
+      align-items: center;
+      background: #2a2a2a;
+      border-radius: 1rem;
+      padding: 0.5rem 1rem;
+      margin: 1rem;
     }
 
-    #send-btn, .icon-btn {
-      padding: 0.6rem 1rem;
-      font-size: 1rem;
-      background: #444;
-      color: #fff;
+    .chat-input input[type="text"] {
+      flex: 1;
+      background: transparent;
       border: none;
-      border-radius: 4px;
+      outline: none;
+      color: #fff;
+      font-size: 1rem;
+      padding: 0.5rem;
+    }
+
+    .chat-input button,
+    .chat-input .icon {
+      background: none;
+      border: none;
+      color: #ccc;
+      font-size: 1.2rem;
       margin-left: 0.5rem;
       cursor: pointer;
     }
 
-    #send-btn:hover, .icon-btn:hover {
-      background: #666;
+    .chat-input .icon:hover,
+    .chat-input button:hover {
+      color: #fff;
     }
 
-    .chat-input {
+    .tools-dropdown {
+      position: absolute;
+      bottom: 3.5rem;
+      left: 3rem;
+      background: #2a2a2a;
+      border: 1px solid #444;
+      border-radius: 0.5rem;
+      padding: 0.5rem;
+      display: none;
+      flex-direction: column;
+      gap: 0.5rem;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      z-index: 10;
+    }
+
+    .tools-dropdown.show {
       display: flex;
-      align-items: center;
+      opacity: 1;
+      transform: translateY(0);
     }
 
-    @keyframes fadeIn {
-      to { opacity: 1; }
+    .tools-dropdown.hide {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    .tool-option {
+      background: #333;
+      color: #eee;
+      padding: 0.5rem;
+      border-radius: 0.3rem;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+
+    .tool-option:hover {
+      background: #555;
     }
   </style>
 </head>
 <body>
   <header>Antithesis Chat</header>
-
   <main>
-    <div class="chat-input" style="margin-bottom: 1rem;">
-      <button class="icon-btn" id="upload-btn">➕</button>
-      <button class="icon-btn" id="mode-btn">🛠</button>
-      <select id="mode">
-        <option value="simple">Simple</option>
-        <option value="core">Core</option>
-        <option value="profound">Profound</option>
-        <option value="devil">Devil's Advocate</option>
-      </select>
-    </div>
-
     <div id="chat-box"></div>
-
-    <div class="chat-input">
-      <input type="text" id="user-input" placeholder="Type your message..." />
-      <button class="icon-btn">🎤</button>
-      <button id="send-btn">Send</button>
-    </div>
   </main>
 
-  <script src="bundle.js"></script>
+  <div class="chat-input">
+    <button class="icon" id="upload-btn">＋</button>
+    <button class="icon" id="tools-btn">⚙️ Tools</button>
+    <input type="text" id="user-input" placeholder="Ask anything" />
+    <button class="icon" id="mic-btn">🎤</button>
+    <button class="icon" id="send-btn">⏎</button>
+  </div>
+
+  <div class="tools-dropdown" id="tools-dropdown">
+    <div class="tool-option" data-mode="simple">Simple – Direct & practical</div>
+    <div class="tool-option" data-mode="core">Core – Truths only</div>
+    <div class="tool-option" data-mode="profound">Profound – Insight & depth</div>
+    <div class="tool-option" data-mode="devil">Devil – Challenge everything</div>
+  </div>
+
+  <script>
+    const toolsBtn = document.getElementById('tools-btn');
+    const toolsDropdown = document.getElementById('tools-dropdown');
+
+    toolsBtn.addEventListener('click', () => {
+      if (toolsDropdown.classList.contains('show')) {
+        toolsDropdown.classList.remove('show');
+        toolsDropdown.classList.add('hide');
+        setTimeout(() => {
+          toolsDropdown.style.display = 'none';
+          toolsDropdown.classList.remove('hide');
+        }, 200);
+      } else {
+        toolsDropdown.style.display = 'flex';
+        requestAnimationFrame(() => {
+          toolsDropdown.classList.add('show');
+        });
+      }
+    });
+
+    document.querySelectorAll('.tool-option').forEach(option => {
+      option.addEventListener('click', () => {
+        document.getElementById('mode').value = option.dataset.mode;
+        toolsDropdown.classList.remove('show');
+        toolsDropdown.classList.add('hide');
+        setTimeout(() => {
+          toolsDropdown.style.display = 'none';
+          toolsDropdown.classList.remove('hide');
+        }, 200);
+      });
+    });
+  </script>
 </body>
 </html>
