@@ -64,6 +64,8 @@
       font-size: 1.2rem;
       cursor: pointer;
       padding: 0.4rem;
+      margin-left: 5px;
+      margin-right: 5px;
     }
     .control-btn:hover {
       opacity: 0.8;
@@ -92,7 +94,6 @@
     .tool-menu {
       position: absolute;
       bottom: 60px;
-      left: 50px;
       background: #222;
       border: 1px solid #444;
       border-radius: 8px;
@@ -101,6 +102,7 @@
       flex-direction: column;
       gap: 0.3rem;
       animation: fadeInUp 0.25s ease-out forwards;
+      width: 200px;
     }
     .tool-menu.show {
       display: flex;
@@ -136,9 +138,9 @@
     <div style="position: relative;">
       <button class="control-btn" id="tools-btn">🛠 Tools</button>
       <div class="tool-menu" id="tool-menu">
-        <div class="mode-option active" data-mode="simple">Simple</div>
-        <div class="mode-option" data-mode="core">Core</div>
-        <div class="mode-option" data-mode="profound">Profound</div>
+        <div class="mode-option active" data-mode="simple">Simple & Concise</div>
+        <div class="mode-option" data-mode="core">Core & intellectual</div>
+        <div class="mode-option" data-mode="profound">Profound & Detailed</div>
         <div class="mode-option" data-mode="devil">Devil's Advocate</div>
       </div>
     </div>
@@ -148,38 +150,32 @@
   </div>
 
   <script>
-    let selectedMode = 'simple';
+    document.getElementById('add-btn').addEventListener('click', () => {
+  const fileInput = document.createElement('input');
+  fileInput.type = 'file';
+  fileInput.accept = '.txt,.md,.json,.csv,.docx,.pdf'; // extend as needed
 
-    document.getElementById('tools-btn').addEventListener('click', () => {
-      const menu = document.getElementById('tool-menu');
-      menu.classList.toggle('show');
-    });
+  fileInput.onchange = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
 
-    document.querySelectorAll('.mode-option').forEach(opt => {
-      opt.addEventListener('click', () => {
-        document.querySelectorAll('.mode-option').forEach(o => o.classList.remove('active'));
-        opt.classList.add('active');
-        selectedMode = opt.dataset.mode;
-        document.getElementById('tool-menu').classList.remove('show');
-      });
-    });
+    const reader = new FileReader();
+    reader.onload = async () => {
+      const content = reader.result;
 
-    document.getElementById('send-btn').addEventListener('click', async () => {
-      const userInputEl = document.getElementById('user-input');
-      const userInput = userInputEl.value.trim();
+      // Send file content to chat API
       const chatBox = document.getElementById('chat-box');
-
-      if (!userInput) return;
-
-      chatBox.innerHTML += `<div class="msg user-msg">${userInput}</div>`;
-      userInputEl.value = '';
+      chatBox.innerHTML += `<div class="msg user-msg">(Uploaded file: ${file.name})</div>`;
 
       try {
         const response = await fetch('/api/chat', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            messages: [{ role: 'user', content: userInput }],
+            messages: [
+              { role: 'system', content: `This document was uploaded by the user:\n\n${content}` },
+              { role: 'user', content: 'Analyze this document.' }
+            ],
             mode: selectedMode,
             provider: 'groq'
           })
@@ -190,27 +186,17 @@
         aiDiv.className = 'msg ai-msg';
         chatBox.appendChild(aiDiv);
         typeTextEffect(aiDiv, data.reply || '[No response]');
-
       } catch (err) {
-        chatBox.innerHTML += `<div class="msg error-msg">❌ Error: Unable to fetch AI response.</div>`;
+        chatBox.innerHTML += `<div class="msg error-msg">❌ Error: Unable to process file.</div>`;
       }
-    });
+    };
 
-    document.getElementById('user-input').addEventListener('keydown', e => {
-      if (e.key === 'Enter' && !e.shiftKey) {
-        e.preventDefault();
-        document.getElementById('send-btn').click();
-      }
-    });
+    reader.readAsText(file); // Works for .txt/.md/.json/.csv. We'll add PDF/DOCX logic later.
+  };
 
-    function typeTextEffect(container, text, speed = 20) {
-      let i = 0;
-      const interval = setInterval(() => {
-        container.textContent += text.charAt(i);
-        i++;
-        if (i >= text.length) clearInterval(interval);
-      }, speed);
-    }
+  fileInput.click(); // Trigger hidden file input
+});
+
   </script>
 </body>
 </html>
