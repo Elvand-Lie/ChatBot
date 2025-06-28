@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Antithesis Chat</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
     body {
       font-family: Arial, sans-serif;
       margin: 0;
@@ -15,7 +18,6 @@
       flex-direction: column;
       height: 100vh;
     }
-
     header {
       padding: 1rem;
       background: #222;
@@ -23,14 +25,12 @@
       font-size: 1.5rem;
       font-weight: bold;
     }
-
     main {
       flex: 1;
       display: flex;
       flex-direction: column;
       padding: 1rem;
     }
-
     #chat-box {
       flex: 1;
       overflow-y: auto;
@@ -40,108 +40,85 @@
       margin-bottom: 1rem;
       background: #181818;
     }
-
     .msg {
       margin: 0.5rem 0;
       opacity: 0;
       animation: fadeIn 0.3s forwards;
     }
-
     .user-msg { color: #4ea1ff; }
     .ai-msg { color: #8aff80; }
     .error-msg { color: #ff6b6b; }
 
+    .chat-controls {
+      background: #222;
+      display: flex;
+      align-items: center;
+      padding: 0.5rem;
+      gap: 0.5rem;
+      border-top: 1px solid #444;
+    }
+    .control-btn {
+      background: transparent;
+      color: #fff;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+      padding: 0.4rem;
+    }
+    .control-btn:hover {
+      opacity: 0.8;
+    }
     #user-input {
       flex: 1;
       padding: 0.6rem;
       font-size: 1rem;
-      border: 1px solid #444;
-      background: #222;
+      background: #111;
       color: #eee;
+      border: 1px solid #444;
       border-radius: 4px;
     }
-
-    .bottom-bar {
-      display: flex;
-      align-items: center;
-      background: #222;
-      border-top: 1px solid #333;
-      padding: 0.75rem;
-      gap: 0.5rem;
-    }
-
     #send-btn {
-      padding: 0.6rem 1rem;
-      font-size: 1rem;
+      font-size: 1.2rem;
       background: #444;
-      color: #fff;
+      color: white;
       border: none;
       border-radius: 4px;
+      padding: 0.4rem 0.8rem;
       cursor: pointer;
     }
-
     #send-btn:hover {
       background: #666;
     }
-
-    #tools-btn {
-      background: none;
-      border: none;
-      color: #ccc;
-      cursor: pointer;
-      font-size: 1rem;
-      display: flex;
-      align-items: center;
-      gap: 0.25rem;
-    }
-
-    #tools-panel {
+    .tool-menu {
       position: absolute;
-      bottom: 4rem;
-      left: 4rem;
+      bottom: 60px;
+      left: 50px;
       background: #222;
-      border: 1px solid #333;
+      border: 1px solid #444;
       border-radius: 8px;
-      padding: 0.5rem 0;
-      width: 220px;
-      opacity: 0;
-      transform: translateY(10px);
-      pointer-events: none;
-      transition: all 0.3s ease;
+      padding: 0.5rem;
+      display: none;
+      flex-direction: column;
+      gap: 0.3rem;
+      animation: fadeInUp 0.25s ease-out forwards;
     }
-
-    #tools-panel.show {
-      opacity: 1;
-      transform: translateY(0);
-      pointer-events: auto;
+    .tool-menu.show {
+      display: flex;
     }
-
     .mode-option {
-      display: block;
-      padding: 0.6rem 1rem;
-      color: #eee;
-      background: none;
-      border: none;
-      width: 100%;
-      text-align: left;
-      font-size: 0.95rem;
+      background: #333;
+      padding: 0.4rem 0.6rem;
+      border-radius: 4px;
       cursor: pointer;
     }
-
-    .mode-option:hover,
     .mode-option.active {
-      background: #333;
+      background: #555;
       font-weight: bold;
     }
-
-    .icon-btn {
-      background: none;
-      border: none;
-      color: #ccc;
-      cursor: pointer;
-      font-size: 1.2rem;
+    @keyframes fadeInUp {
+      from { transform: translateY(10px); opacity: 0; }
+      to   { transform: translateY(0); opacity: 1; }
     }
-
     @keyframes fadeIn {
       to { opacity: 1; }
     }
@@ -149,25 +126,91 @@
 </head>
 <body>
   <header>Antithesis Chat</header>
+
   <main>
     <div id="chat-box"></div>
   </main>
 
-  <div class="bottom-bar">
-    <button class="icon-btn">＋</button>
-    <button id="tools-btn">🛠 Tools</button>
-    <input type="text" id="user-input" placeholder="Ask anything..." />
-    <button class="icon-btn">🎤</button>
+  <div class="chat-controls">
+    <button class="control-btn" id="add-btn">➕</button>
+    <div style="position: relative;">
+      <button class="control-btn" id="tools-btn">🛠 Tools</button>
+      <div class="tool-menu" id="tool-menu">
+        <div class="mode-option active" data-mode="simple">Simple</div>
+        <div class="mode-option" data-mode="core">Core</div>
+        <div class="mode-option" data-mode="profound">Profound</div>
+        <div class="mode-option" data-mode="devil">Devil's Advocate</div>
+      </div>
+    </div>
+    <input type="text" id="user-input" placeholder="Type your message...">
+    <button id="mic-btn" class="control-btn">🎤</button>
     <button id="send-btn">⮝</button>
   </div>
 
-  <div id="tools-panel">
-    <button class="mode-option active" data-mode="simple">Simple – Direct & Practical</button>
-    <button class="mode-option" data-mode="core">Core – Condensed Truths</button>
-    <button class="mode-option" data-mode="profound">Profound – Insightful Depth</button>
-    <button class="mode-option" data-mode="devil">Devil’s Advocate – Ruthless Logic</button>
-  </div>
+  <script>
+    let selectedMode = 'simple';
 
-  <script src="bundle.js"></script>
+    document.getElementById('tools-btn').addEventListener('click', () => {
+      const menu = document.getElementById('tool-menu');
+      menu.classList.toggle('show');
+    });
+
+    document.querySelectorAll('.mode-option').forEach(opt => {
+      opt.addEventListener('click', () => {
+        document.querySelectorAll('.mode-option').forEach(o => o.classList.remove('active'));
+        opt.classList.add('active');
+        selectedMode = opt.dataset.mode;
+        document.getElementById('tool-menu').classList.remove('show');
+      });
+    });
+
+    document.getElementById('send-btn').addEventListener('click', async () => {
+      const userInputEl = document.getElementById('user-input');
+      const userInput = userInputEl.value.trim();
+      const chatBox = document.getElementById('chat-box');
+
+      if (!userInput) return;
+
+      chatBox.innerHTML += `<div class="msg user-msg">${userInput}</div>`;
+      userInputEl.value = '';
+
+      try {
+        const response = await fetch('/api/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            messages: [{ role: 'user', content: userInput }],
+            mode: selectedMode,
+            provider: 'groq'
+          })
+        });
+
+        const data = await response.json();
+        const aiDiv = document.createElement('div');
+        aiDiv.className = 'msg ai-msg';
+        chatBox.appendChild(aiDiv);
+        typeTextEffect(aiDiv, data.reply || '[No response]');
+
+      } catch (err) {
+        chatBox.innerHTML += `<div class="msg error-msg">❌ Error: Unable to fetch AI response.</div>`;
+      }
+    });
+
+    document.getElementById('user-input').addEventListener('keydown', e => {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        document.getElementById('send-btn').click();
+      }
+    });
+
+    function typeTextEffect(container, text, speed = 20) {
+      let i = 0;
+      const interval = setInterval(() => {
+        container.textContent += text.charAt(i);
+        i++;
+        if (i >= text.length) clearInterval(interval);
+      }, speed);
+    }
+  </script>
 </body>
 </html>
