@@ -150,32 +150,38 @@
   </div>
 
   <script>
-    document.getElementById('add-btn').addEventListener('click', () => {
-  const fileInput = document.createElement('input');
-  fileInput.type = 'file';
-  fileInput.accept = '.txt,.md,.json,.csv,.docx,.pdf'; // extend as needed
+    let selectedMode = 'simple';
 
-  fileInput.onchange = async (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
+    document.getElementById('tools-btn').addEventListener('click', () => {
+      const menu = document.getElementById('tool-menu');
+      menu.classList.toggle('show');
+    });
 
-    const reader = new FileReader();
-    reader.onload = async () => {
-      const content = reader.result;
+    document.querySelectorAll('.mode-option').forEach(opt => {
+      opt.addEventListener('click', () => {
+        document.querySelectorAll('.mode-option').forEach(o => o.classList.remove('active'));
+        opt.classList.add('active');
+        selectedMode = opt.dataset.mode;
+        document.getElementById('tool-menu').classList.remove('show');
+      });
+    });
 
-      // Send file content to chat API
+    document.getElementById('send-btn').addEventListener('click', async () => {
+      const userInputEl = document.getElementById('user-input');
+      const userInput = userInputEl.value.trim();
       const chatBox = document.getElementById('chat-box');
-      chatBox.innerHTML += `<div class="msg user-msg">(Uploaded file: ${file.name})</div>`;
+
+      if (!userInput) return;
+
+      chatBox.innerHTML += <div class="msg user-msg">${userInput}</div>;
+      userInputEl.value = '';
 
       try {
         const response = await fetch('/api/chat', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            messages: [
-              { role: 'system', content: `This document was uploaded by the user:\n\n${content}` },
-              { role: 'user', content: 'Analyze this document.' }
-            ],
+            messages: [{ role: 'user', content: userInput }],
             mode: selectedMode,
             provider: 'groq'
           })
@@ -186,17 +192,27 @@
         aiDiv.className = 'msg ai-msg';
         chatBox.appendChild(aiDiv);
         typeTextEffect(aiDiv, data.reply || '[No response]');
+
       } catch (err) {
-        chatBox.innerHTML += `<div class="msg error-msg">❌ Error: Unable to process file.</div>`;
+        chatBox.innerHTML += <div class="msg error-msg">❌ Error: Unable to fetch AI response.</div>;
       }
-    };
+    });
 
-    reader.readAsText(file); // Works for .txt/.md/.json/.csv. We'll add PDF/DOCX logic later.
-  };
+    document.getElementById('user-input').addEventListener('keydown', e => {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        document.getElementById('send-btn').click();
+      }
+    });
 
-  fileInput.click(); // Trigger hidden file input
-});
-
+    function typeTextEffect(container, text, speed = 20) {
+      let i = 0;
+      const interval = setInterval(() => {
+        container.textContent += text.charAt(i);
+        i++;
+        if (i >= text.length) clearInterval(interval);
+      }, speed);
+    }
   </script>
 </body>
 </html>
